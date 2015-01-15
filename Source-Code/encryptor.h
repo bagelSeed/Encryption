@@ -4,7 +4,7 @@
 // @author: Mark Luo & Elisha Lai
 // @description: Module for providing functions to work with Encryptor
 // objects
-// @version: 1.0 22/12/2014
+// @version: 1.2 15/01/2014
 //====================================================================
 
 // Encryptor module (encryptor.h)
@@ -17,20 +17,19 @@
 // Object definition
 class Encryptor {
    istream &in;                          // Input stream
-   ostream &out;                         // Output stream
-   int key;
-   int value;                 
+   const int keyValue1;                  // Public key value pair, d
+   const int keyValue2;                  // Public key value pair, n
 
    // 
    bool authenticate();
 
 public:
-   Encryptor(istream &in, ostream &out); // Constructor
-   ~Encryptor();                         // Destructor
+   Encryptor(istream &in, const int keyValue1, const int keyValue2); // Constructor
+   Encryptor(istream &in, string keyFile = "publickey.txt");         // Constructor
+   ~Encryptor();                                                     // Destructor
 
    // Runs the encryptor.
-   void run();
-   friend ostream& operator<<(ostream &in)
+   friend ostream& operator<<(ostream &out, const Encryptor encryptor);
 };
 
 #endif
