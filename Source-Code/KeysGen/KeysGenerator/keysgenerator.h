@@ -3,7 +3,7 @@
 //
 // @author: Mark Luo & Elisha Lai
 // @description: Module for providing functions to work with
-// KeysGenerator objects
+// KeyGenerator objects
 // @version: 1.2 30/01/2014
 //====================================================================
 
@@ -12,29 +12,26 @@
 #ifndef __KEYSGENERATOR_H__
 #define __KEYSGENERATOR_H__
 
+#include <iostream>
 #include <utility>
 
 // Object definition
 class KeysGenerator {
-   std::pair<int, int> privateKey;      // Private key value pair, (n,d)
-   std::pair<int, int> publicKey;       // Public key value pair, (n,e)
+   std::pair<long long, long long> privateKey;            // Private key value pair, (n,d)
+   std::pair<long long, long long> publicKey;             // Public key value pair, (n,e)
    
-   // Checks if a number num is prime
-   bool isPrime(const int num);
-
-   // Generates a prime number
-   int generatePrime();
-
-   // Finds the greatest common divisor of two non-negative numbers, num1 and num2
-   int gcd(int num1, int num2);
-
-   // Finds another non-negative number coprime to a number num
-   int findCoPrime(int num);
+   // Generates privateKey and publicKey randomly.
+   void generateKeys();
 
 public:
-   KeysGenerator();                     // Constructor
-   ~KeysGenerator();                    // Destructor
+   KeysGenerator();                                       // Constructor
+   ~KeysGenerator();                                      // Destructor
 
-   std::pair<int, int> getPrivateKey(); // Accessor to privateKey
-   std::pair<int, int> getPublicKey();  // Accessor to publicKey
+   std::pair<long long, long long> getPrivateKey() const; // Accessor to privateKey
+   std::pair<long long, long long> getPublicKey() const;  // Accessor to publicKey
+
+   // Regenerates privateKey and publicKey randomly.
+   void regenerateKeys();
 };
+
+#endif
