@@ -31,7 +31,7 @@ static long long gcd(long long num1, long long num2) {
 } // gcd
 
 // See interface (header file).
-long long findCoPrime(const long long num) {
+long long coprime(const long long num) {
    long long i = 2;
 
    // Iterates until a number is found to be coprime with num
@@ -57,8 +57,8 @@ static pair<long long, pair<long long, long long> > extendedEuclidean(long long 
    long long m = 0;
    long long n = 0;
 
-    // Calculates new values of x, y, q, and r using Extended
-    // Euclidean Algorithm until a is zero 
+    // Calculates new values of x, y, q, and r using
+    // Extended Euclidean Algorithm until a is zero 
     while (a != 0) {
        q = b / a;
        r = b % a;
@@ -76,7 +76,27 @@ static pair<long long, pair<long long, long long> > extendedEuclidean(long long 
 } // extendedEuclidean
 
 // See interface (header file).
-long long findMultInverse(const long long num, const long long m) {
-   const long long multInverse = (extendedEuclidean(num,m).second.first + m) % m;
-   return multInverse;
+long long multInverse(const long long num, const long long modulus) {
+   const long long result = (extendedEuclidean(num,modulus).second.first + modulus) % modulus;
+   return result;
 } // findMultInverse
+
+// See interface (header file).
+long long modularPow(long long base, long long exponent, const long long modulus) {
+   long long result = 1;
+
+   // Calculates the value of result until exponent
+   // is zero
+   while (exponent != 0) {
+
+      if (exponent % 2 == 1) {
+        result = (result * base) % modulus;
+      } // if
+
+      exponent = exponent >> 1;
+      base = (base * base) % modulus;
+   } // while
+
+   return result;
+} // modularPow
+
