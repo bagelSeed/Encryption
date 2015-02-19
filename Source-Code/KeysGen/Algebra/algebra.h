@@ -12,10 +12,13 @@
 #ifndef __ALGEBRA_H__
 #define __ALGEBRA_H__
 
-// Finds another non-negative number coprime to a number num.
-long long findCoPrime(const long long num);
+// Finds another non-negative number coprime to num.
+long long coprime(const long long num);
 
-// Finds the multiplicative inverse of a number num modulo m.
-long long findMultInverse(const long long num, const long long m);
+// Calculates multiplicative inverse of num modulo modulus.
+long long multInverse(const long long num, const long long modulus);
+
+// Calculates base raised to the exponent modulo modulus.
+long long modularPow(long long base, long long exponent, const long long modulus);
 
 #endif
