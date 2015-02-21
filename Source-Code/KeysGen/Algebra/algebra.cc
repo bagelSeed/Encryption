@@ -43,7 +43,7 @@ long long coprime(const long long num) {
    } // while
 
    return i;
-} // findCoPrime
+} // coprime
 
 // Finds the greatest common divisor of two non-negative numbers,
 // a and b, and solution to the equation ax + by = gcd(a, b).
@@ -79,7 +79,7 @@ static pair<long long, pair<long long, long long> > extendedEuclidean(long long 
 long long multInverse(const long long num, const long long modulus) {
    const long long result = (extendedEuclidean(num,modulus).second.first + modulus) % modulus;
    return result;
-} // findMultInverse
+} // multInverse
 
 // See interface (header file).
 long long modularPow(long long base, long long exponent, const long long modulus) {
@@ -99,4 +99,3 @@ long long modularPow(long long base, long long exponent, const long long modulus
 
    return result;
 } // modularPow
-
