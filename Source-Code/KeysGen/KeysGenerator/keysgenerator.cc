@@ -25,8 +25,8 @@ void KeysGenerator::generateKeys() {
    const long long q = primenumgenerator.getPrimeNum(); // Stores a randomly generated number
    const long long n = p * q;
    const long long phi = (p - 1) * (q - 1);
-   const long long e = findCoPrime(phi);
-   const long long d = findMultInverse(e, phi);
+   const long long e = coprime(phi);
+   const long long d = multInverse(e, phi);
 
    // Sets privateKey and publicKey to calculated values
    privateKey.first = n;
