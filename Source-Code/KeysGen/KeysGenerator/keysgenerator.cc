@@ -4,7 +4,7 @@
 // @author: Mark Luo & Elisha Lai
 // @description: Module for providing functions to work with
 // KeyGenerator objects
-// @version: 1.2 30/01/2014
+// @version: 1.2 30/01/2015
 //====================================================================
 
 // KeysGenerator module (keysgenerator.cc)
