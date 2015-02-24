@@ -3,7 +3,7 @@
 //
 // @author: Mark Luo & Elisha Lai
 // @description: Program for generating private & public keys
-// @version: 1.4 16/02/2014
+// @version: 1.4 16/02/2015
 //====================================================================
 
 // Keysgen program (keysgen.cc)
