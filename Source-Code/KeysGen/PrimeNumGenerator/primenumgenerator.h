@@ -4,7 +4,7 @@
 // @author: Mark Luo & Elisha Lai
 // @description: Module for providing functions to work with
 // PrimeNumGenerator objects
-// @version: 1.2 30/01/2014
+// @version: 1.2 30/01/2015
 //====================================================================
 
 // PrimeNumGenerator module (primenumgenerator.h)
