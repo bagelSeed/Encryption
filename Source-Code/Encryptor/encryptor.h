@@ -4,7 +4,7 @@
 // @author: Mark Luo & Elisha Lai
 // @description: Module for providing functions to work with Encryptor
 // objects
-// @version: 1.2 15/01/2014
+// @version: 1.2 15/01/2015
 //====================================================================
 
 // Encryptor module (encryptor.h)
