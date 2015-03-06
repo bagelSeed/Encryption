@@ -4,7 +4,7 @@
 // @author: Mark Luo & Elisha Lai
 // @description: Module for providing functions to work with Encryptor
 // objects
-// @version: 1.2 15/01/2015
+// @version: 1.2 15/01/2014
 //====================================================================
 
 // Encryptor module (encryptor.h)
@@ -13,23 +13,23 @@
 #define __ENCRYPTOR_H__
 
 #include <iostream>
+#include <string>
+#include <utility>
 
 // Object definition
 class Encryptor {
-   istream &in;                          // Input stream
-   const int keyValue1;                  // Public key value pair, d
-   const int keyValue2;                  // Public key value pair, n
+   std::pair<long long, long long> publicKey; // Public key value pair (n,e)
 
-   // 
-   bool authenticate();
+   // Checks if keyFile provided in the constructor exists.
+   bool keyFileExists(const std::string keyFile);
 
 public:
-   Encryptor(istream &in, const int keyValue1, const int keyValue2); // Constructor
-   Encryptor(istream &in, string keyFile = "publickey.txt");         // Constructor
-   ~Encryptor();                                                     // Destructor
+   Encryptor(const long long keyValue1, const long long keyValue2); // Constructor
+   Encryptor(const std::string keyFile = "publickey.txt");          // Constructor
+   ~Encryptor();                                                    // Destructor
 
-   // Runs the encryptor.
-   friend ostream& operator<<(ostream &out, const Encryptor encryptor);
+   // Performs the encryption.
+   void encrypt(std::istream &in, std::ostream &out);
 };
 
 #endif
