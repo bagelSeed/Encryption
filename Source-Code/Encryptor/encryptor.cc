@@ -4,49 +4,58 @@
 // @author: Mark Luo & Elisha Lai
 // @description: Module for providing functions to work with Encryptor
 // objects
-// @version: 1.2 15/01/2015
+// @version: 1.2 15/01/2014
 //====================================================================
 
 // Encryptor module (encryptor.cc)
 
+#include <fstream>
 #include "encryptor.h"
+#include "algebra.h"
 
-using namespace std; // Provides direct access to sd
+using namespace std; // Provides direct access to std
 
 // See interface (header file).
-bool Encryptor::authenticate() {
-   ifstream ifs (publicKeyFile.c_str()); // Connects stream and authNFile
+bool Encryptor::keyFileExists(const string keyFile) {
+   ifstream publicKeyFile(keyFile.c_str());
 
-   if ( !ifs.good() ) {              // File doesn't exists in current directory?
-      cout << publicKeyFile << ' ' << "is missing from the current directory." << endl;
+   if (!publicKeyFile.good()) { // File doesn't exists in current directory?
       return false;
    } else {
       return true;    
    } // if
-} // authenticate
+} // keyFileExists
 
 // See interface (header file).
-Encryptor::Encryptor(istream &in, const int keyValue1, const int keyValue2)
-   : in(in), keyValue1(keyValue1), keyValue2(keyValue2) {} // Constructor
+Encryptor::Encryptor(const long long keyValue1, const long long keyValue2) {
+   // Sets publicKey to keyValue1 and keyValue2
+   publicKey.first = keyValue1;
+   publicKey.second = keyValue2;
+} // Constructor
 
 // See interface (header file).
-Encryptor::Encryptor(istream &in, string keyFile)
-   : in(in) {} // Constructor
+Encryptor::Encryptor(const string keyFile) {
+   if (keyFileExists(keyFile)) { // keyFile exists in current directory?
+   	// Reads public key from a file
+   	ifstream publicKeyFile(keyFile.c_str());
+      publicKeyFile >> publicKey.first >> publicKey.second;
+   } else {
+      throw string("ERROR: " + keyFile + " is missing from the current directory.\nEncryption failed.");
+   } // if
+} // Constructor
 
 // See interface (header file).
 Encryptor::~Encryptor() {} // Destructor
 
 // See interface (header file).
-void Encryptor::run() {
-   if ( authenticate() ) { // Authentication successful?
-      
-   } else {
-   	  cout << "Encryption failed."
-   } // if
-} // run
-
-// See interface (header file).
-ostream& operator<<(ostream &out, Encryptor encryptor) {
-   // Perform encryption here.
-   return out;
-}
+void Encryptor::encrypt(istream &in, ostream &out) {
+   char c = '\0';
+   while (in.get(c)) {
+   	if (c == '\n') { // Newline character read in?
+   	  	out << endl;
+   	} else {
+   	   c = (modularPow(c, publicKey.second, publicKey.first) % 95) + 32;
+   	   out << c;
+      } // if
+   } // while
+} // Encrypt
