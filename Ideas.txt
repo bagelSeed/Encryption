@@ -1,3 +1,4 @@
 RSA Encryption Code
 Message Compression (Huffman)
 Buffered conversion
+Expansion to chat messaging software
